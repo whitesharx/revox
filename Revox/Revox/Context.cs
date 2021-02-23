@@ -29,7 +29,7 @@ namespace WhiteSharx.Ci.Revox {
 
       Root = new ConfigurationBuilder()
         .AddJsonFile("appsettings.json", true)
-        .AddCommandLine(args)
+        .AddCommandLine(args ?? new string[] { })
         .AddEnvironmentVariables()
         .Build();
 

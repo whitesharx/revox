@@ -12,5 +12,7 @@ RUN apt-get update && apt-get install -y \
   firefox-geckodriver \
   && rm -rf /var/lib/apt/lists/*
 
-COPY --from=sdk /revox-build/ /revox
+COPY --from=sdk /revox-build/revox /revox
+COPY --from=sdk /revox-build/Revox/appsettings.json /revox
+
 ENTRYPOINT ["/revox/Revox"]

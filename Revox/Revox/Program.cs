@@ -65,21 +65,22 @@ namespace WhiteSharx.Ci.Revox {
       
       var retryDelay = TimeSpan.FromSeconds(context.Email.RetryDelaySeconds);
 
-      Policy.Handle<TwoFactorFailedException>(e => {
-        context.Logger.Warning("[Revox] Retrying two-factor... Exception: {Exception}", e);
-        return true;
-      })
-      .WaitAndRetry(context.Email.RetryCount, i => retryDelay)
-      .Execute(() => {
-        Task.Delay(TimeSpan.FromSeconds(4)).Wait();
-        TryAuthorize(context, browser);
+      Policy
+        .Handle<TwoFactorFailedException>(e => {
+          context.Logger.Warning("[Revox] Retrying two-factor... Exception: {Exception}", e);
+          return true;
+        })
+        .WaitAndRetry(context.Email.RetryCount, i => retryDelay)
+        .Execute(() => {
+          Task.Delay(TimeSpan.FromSeconds(4)).Wait();
+          TryAuthorize(context, browser);
 
-        if (browser.TryRevoke()) {
-          return;
-        }
+          if (browser.TryRevoke()) {
+            return;
+          }
 
-        throw new RevokeFailedException();
-      });
+          throw new RevokeFailedException();
+        });
     }
 
     private static void TryAuthorize(Context context, Browser browser) {

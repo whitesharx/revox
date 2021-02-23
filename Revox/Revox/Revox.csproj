@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>WhiteSharx.Ci.Purge</RootNamespace>
+    <RootNamespace>WhiteSharx.Ci.Revox</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

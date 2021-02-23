@@ -33,6 +33,7 @@ nupkg/
 .log
 .tmp
 .bk
+.env
 
 ehthumbs.db
 [Tt]humbs.db
